@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel Admin - Algerian Models Camp</title>
+  <link rel="stylesheet" href="admin-style.css">
+  <link rel="stylesheet" href="admin-style-dark.css">
+  
+  <!-- Charger Supabase en premier -->
+  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+  
+ 
+  
+</head>
+
+<body>
+  <!-- Le contenu du dashboard sera masqué jusqu'à l'authentification -->
+  <div id="adminDashboard" style="display: none;">
+  
+    <!-- Bouton Menu Burger -->
+    <button class="menu-toggle" id="menuToggle">
+      ☰
+    </button>
+    
+    <!-- Bouton de changement de thème -->
+    <button class="theme-toggle" id="themeToggle">
+      <span>🌙</span>
+      <span class="toggle-text">Mode nuit</span>
+    </button>
+    
+    <!-- Backdrop pour fermer le menu -->
+    <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+  
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <h2>⚜️ Admin Panel</h2>
+        <p>Algerian Models Camp</p>
+        <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #e9ecef;">
+          <p style="font-size: 0.85rem; color: var(--accent-color);" id="adminUserEmail">Chargement...</p>
+          <button onclick="window.authAdmin.logout()" style="
+            margin-top: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: var(--danger);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            width: 100%;
+          ">
+            🚪 Déconnexion
+          </button>
+        </div>
+      </div>
+      <nav class="sidebar-nav">
+        <button class="nav-item active" data-section="dashboard">
+          <span>📊</span> Dashboard
+        </button>
+        <button class="nav-item" data-section="content">
+          <span>📝</span> Contenu
+        </button>
+        <button class="nav-item" data-section="services">
+          <span>⚙️</span> Services
+        </button>
+        <button class="nav-item" data-section="portfolio">
+          <span>🖼️</span> Portfolio
+        </button>
+        <button class="nav-item" data-section="news">
+          <span>📰</span> Événements
+        </button>
+        <button class="nav-item" data-section="formations">
+          <span>🎓</span> Formations
+        </button>
+        <button class="nav-item" data-section="applications">
+          <span>📋</span> Candidatures
+        </button>
+        <button class="nav-item" data-section="model-messages">
+          <span>💬</span> Messages Modèles
+        </button>
+        <button class="nav-item" data-section="client-bookings">
+          <span>📅</span> Réservations Clients
+        </button>
+        <button class="nav-item" data-section="settings">
+          <span>⚙️</span> Paramètres
+        </button>
+      </nav>
+      
+      <!-- Navigation Buttons -->
+      <div class="navigation-buttons">
+        <a href="vitrine.html" class="btn-navigate btn-navigate-visitor" target="_blank">
+          <span>👤</span> Espace Visiteur
+        </a>
+        <a href="client.html" class="btn-navigate btn-navigate-client" target="_blank">
+          <span>💼</span> Espace Client
+        </a>
+        <a href="landing.html" class="btn-navigate btn-navigate-visitor">
+          <span>🏠</span> Page d'Accueil
+        </a>
+      </div>
+    </aside>
+    
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Dashboard Section -->
+      <section id="section-dashboard" class="content-section active">
+        <h1>Tableau de bord</h1>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <h3>Portfolio</h3>
+            <p class="stat-number" id="statsPortfolio">0</p>
+          </div>
+          <div class="stat-card">
+            <h3>Événements</h3>
+            <p class="stat-number" id="statsNews">0</p>
+          </div>
+          <div class="stat-card">
+            <h3>Candidatures</h3>
+            <p class="stat-number" id="statsApplications">0</p>
+          </div>
+          <div class="stat-card stat-card-model">
+            <h3>💬 Messages Modèles</h3>
+            <p class="stat-number" id="statsModelMessages">0</p>
+            <p class="stat-description">Visiteurs / Modèles</p>
+          </div>
+          <div class="stat-card stat-card-client">
+            <h3>📅 Réservations Clients</h3>
+            <p class="stat-number" id="statsClientBookings">0</p>
+            <p class="stat-description">Clients professionnels</p>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Content Section -->
+      <section id="section-content" class="content-section">
+        <h1>Gestion du Contenu</h1>
+        <div class="content-editor">
+          <div class="editor-card">
+            <h3>À Propos</h3>
+            <form id="aboutForm">
+              <textarea id="aboutStory" placeholder="Notre Histoire" rows="4"></textarea>
+              <textarea id="aboutMission" placeholder="Notre Mission" rows="4"></textarea>
+              <textarea id="aboutValues" placeholder="Nos Valeurs" rows="4"></textarea>
+              <button type="submit" class="btn-save">Enregistrer</button>
+            </form>
+          </div>
+          <div class="editor-card">
+            <h3>Contact</h3>
+            <form id="contactForm">
+              <input type="text" id="contactAddress" placeholder="Adresse">
+              <input type="text" id="contactPhone" placeholder="Téléphone">
+              <input type="email" id="contactEmail" placeholder="Email">
+              <input type="text" id="contactWhatsapp" placeholder="WhatsApp">
+              <input type="url" id="contactFacebook" placeholder="Facebook URL">
+              <input type="url" id="contactInstagram" placeholder="Instagram URL">
+              <input type="url" id="contactTiktok" placeholder="TikTok URL">
+              <button type="submit" class="btn-save">Enregistrer</button>
+            </form>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Services Section -->
+      <section id="section-services" class="content-section">
+        <div class="section-header">
+          <h1>Services</h1>
+          <button class="btn-add" id="addServiceBtn">➕ Ajouter</button>
+        </div>
+        <div id="servicesList" class="items-list"></div>
+      </section>
+      
+      <!-- Portfolio Section -->
+      <section id="section-portfolio" class="content-section">
+        <div class="section-header">
+          <h1>Portfolio</h1>
+          <button class="btn-add" id="addPortfolioBtn">➕ Ajouter</button>
+        </div>
+        <div id="portfolioList" class="items-grid"></div>
+      </section>
+      
+      <!-- News Section -->
+      <section id="section-news" class="content-section">
+        <div class="section-header">
+          <h1>Événements & Actualités</h1>
+          <button class="btn-add" id="addNewsBtn">➕ Ajouter</button>
+        </div>
+        <div id="newsList" class="items-grid"></div>
+      </section>
+      
+      <!-- Formations Section -->
+      <section id="section-formations" class="content-section">
+        <div class="section-header">
+          <h1>Formations</h1>
+          <button class="btn-add" id="addFormationBtn">➕ Ajouter</button>
+        </div>
+        <div id="formationsList" class="items-grid"></div>
+      </section>
+      
+      <!-- Applications Section -->
+      <section id="section-applications" class="content-section">
+        <h1>Candidatures</h1>
+        <p style="color: #d4af37; margin-bottom: 1rem;">💡 Approuver une candidature l'ajoute automatiquement au portfolio et envoie un email au candidat.</p>
+        <div id="applicationsList" class="applications-list"></div>
+      </section>
+      
+      <!-- Model Messages Section -->
+      <section id="section-model-messages" class="content-section">
+        <div class="section-header-with-badge">
+          <h1>💬 Messages des Modèles / Visiteurs</h1>
+          <span class="section-badge badge-model">Visiteurs</span>
+        </div>
+        <p class="section-description">Messages et demandes de renseignements provenant des visiteurs et modèles potentiels via le formulaire de contact.</p>
+        <div id="modelMessagesList" class="messages-list"></div>
+      </section>
+      
+      <!-- Client Bookings Section -->
+      <section id="section-client-bookings" class="content-section">
+        <div class="section-header-with-badge">
+          <h1>📅 Réservations des Clients</h1>
+          <span class="section-badge badge-client">Clients</span>
+        </div>
+        <p class="section-description">Réservations et demandes de séances provenant des clients professionnels via l'espace client.</p>
+        <div id="clientBookingsList" class="messages-list"></div>
+      </section>
+      
+      <!-- Settings Section -->
+      <section id="section-settings" class="content-section">
+        <h1>Paramètres</h1>
+        <div class="settings-grid">
+          <div class="settings-card">
+            <h3>💳 Configuration CCP</h3>
+            <p>Configurez le numéro CCP pour les paiements en ligne des clients</p>
+            <form id="ccpSettingsForm">
+              <div class="form-group">
+                <label for="ccpNumber">Numéro CCP (20 chiffres) *</label>
+                <input type="text" id="ccpNumber" placeholder="Ex: 12345678901234567890" maxlength="20" required>
+                <div class="ccp-counter">
+                  <span id="ccpSettingsCounter">0/20</span>
+                </div>
+                <small class="form-help">Ce numéro sera affiché aux clients pour effectuer leurs paiements</small>
+              </div>
+              <button type="submit" class="btn-save">💾 Enregistrer le CCP</button>
+            </form>
+            <div class="current-ccp" id="currentCcpDisplay">
+              <h4>CCP Actuel:</h4>
+              <div class="ccp-display" id="currentCcpNumber">Non configuré</div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+  
+  <!-- Modal -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span class="modal-close">&times;</span>
+      <h2 id="modalTitle">Ajouter</h2>
+      <form id="modalForm">
+        <div id="modalFields"></div>
+        <div class="modal-actions">
+          <button type="submit" class="btn-save">Enregistrer</button>
+          <button type="button" class="btn-cancel" id="cancelBtn">Annuler</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  
+  <!-- Lightbox pour photos des candidatures -->
+  <div id="candidateLightbox" class="lightbox">
+    <span class="lightbox-close">&times;</span>
+    <div class="lightbox-nav">
+      <button class="lightbox-prev">❮</button>
+      <button class="lightbox-next">❯</button>
+    </div>
+    <div class="lightbox-content">
+      <img id="lightbox-image" src="" alt="">
+      <div class="lightbox-counter">
+        <span id="current-index">1</span> / <span id="total-images">1</span>
+      </div>
+      <div class="lightbox-info">
+        <p id="lightbox-candidate-name"></p>
+        <p id="lightbox-candidate-details"></p>
+      </div>
+    </div>
+  </div>
+  
+  <script src="auth-admin.js"></script>
+  <script src="admin-script.js"></script>
+  
+  <!-- Script d'initialisation -->
+  <script>
+    // Initialiser l'authentification au chargement de la page
+    document.addEventListener('DOMContentLoaded', async () => {
+      console.log('🚀 Initialisation de l\'application admin...');
+      
+      try {
+        // Initialiser l'authentification
+        const user = await window.authAdmin.init();
+        
+        if (user) {
+          console.log('✅ Utilisateur authentifié:', user.email);
+          
+          // Afficher l'email de l'utilisateur
+          const emailDisplay = document.getElementById('adminUserEmail');
+          if (emailDisplay) {
+            emailDisplay.textContent = user.email;
+          }
+          
+          // Afficher le dashboard
+          const dashboard = document.getElementById('adminDashboard');
+          if (dashboard) {
+            dashboard.style.display = 'block';
+          }
+          
+          // Initialiser l'application principale
+          if (typeof initializeApp === 'function') {
+            await initializeApp();
+          }
+        }
+      } catch (error) {
+        console.error('❌ Erreur d\'initialisation:', error);
+        alert('Erreur de connexion. Veuillez réessayer.');
+      }
+    });
+  </script>
+</body>
+
+</html>
