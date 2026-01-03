@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Espace Client - Algerian Models Camp</title>
+  <link rel="stylesheet" href="client-style.css">
+  <link rel="stylesheet" href="client-style-dark.css">
+</head>
+
+<body>
+  <!-- Theme Toggle Button -->
+  <button id="clientThemeToggle" aria-label="Toggle dark mode">
+    <span>🌙</span>
+    <span class="toggle-text">Mode Nuit</span>
+  </button>
+  
+  <!-- Sidebar -->
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  <aside class="client-sidebar" id="clientSidebar">
+    <div class="sidebar-header">
+      <h2>Espace Client</h2>
+      <button class="sidebar-close" id="sidebarClose">&times;</button>
+    </div>
+    <nav class="sidebar-menu">
+      <a href="#home" class="sidebar-link">🏠 Accueil</a>
+      <a href="#models" class="sidebar-link">👥 Nos Modèles</a>
+      <a href="#booking" class="sidebar-link">📅 Réserver</a>
+    </nav>
+    <div class="sidebar-footer">
+      <a href="index.html" class="btn-back-home">← Retour à l'accueil</a>
+    </div>
+  </aside>
+  
+  <!-- Mobile Menu Toggle -->
+  <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  
+  <!-- Main Content -->
+  <div class="main-wrapper">
+    <!-- Hero Section -->
+    <section id="home" class="hero client-hero">
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <h1 class="hero-title">Espace Client</h1>
+        <p class="hero-subtitle">Découvrez nos modèles professionnels et réservez vos séances</p>
+      </div>
+    </section>
+    
+    <!-- Models Section -->
+<section id="models" class="models-section">
+  <div class="container">
+      <h2 class="section-title">Nos Modèles Professionnels</h2>
+      <div class="models-filters">
+          <button class="filter-btn active" data-filter="all">Tous</button>
+          <button class="filter-btn" data-filter="fashion">Mode</button>
+      </div>
+      <div class="models-grid" id="modelsGrid"></div>
+  </div>
+</section>
+    
+ 
+    
+    <!-- Booking Section -->
+<section id="booking" class="booking-section">
+  <div class="container">
+      <h2 class="section-title">Réserver une Séance</h2>
+      <form id="bookingForm" class="booking-form">
+          <div class="form-row">
+              <div class="form-group">
+                  <label for="clientName">Nom Complet *</label>
+                  <input type="text" id="clientName" required>
+              </div>
+              <div class="form-group">
+                  <label for="clientEmail">Email *</label>
+                  <input type="email" id="clientEmail" required>
+              </div>
+          </div>
+          <div class="form-row">
+              <div class="form-group">
+                  <label for="clientPhone">Téléphone *</label>
+                  <input type="tel" id="clientPhone" required>
+              </div>
+              <div class="form-group">
+                  <label for="bookingDuration">Durée *</label>
+                  <select id="bookingDuration" required>
+                      <option value="">Choisir une durée...</option>
+                      <option value="half-day">Demi-journée (4h)</option>
+                      <option value="full-day">Journée complète (8h)</option>
+                      <option value="weekend">Week-end (2 jours)</option>
+                      <option value="week">Semaine (5 jours)</option>
+                      <option value="custom">Période personnalisée</option>
+                  </select>
+              </div>
+          </div>
+          
+          <!-- Date Range pour période personnalisée (masqué par défaut) -->
+          <div id="customDateRange" style="display: none;">
+              <div class="form-row">
+                  <div class="form-group">
+                      <label for="startDate">Date de début *</label>
+                      <input type="date" id="startDate">
+                  </div>
+                  <div class="form-group">
+                      <label for="endDate">Date de fin *</label>
+                      <input type="date" id="endDate">
+                  </div>
+              </div>
+          </div>
+          
+          <!-- Date simple pour les durées standards -->
+          <div id="standardDate" class="form-group">
+              <label for="bookingDate">Date souhaitée *</label>
+              <input type="date" id="bookingDate" required>
+          </div>
+          
+          <div class="form-group">
+              <label for="modelSelect">Sélectionner un modèle *</label>
+              <select id="modelSelect" required>
+                  <option value="">Choisir un modèle...</option>
+              </select>
+          </div>
+          <div class="form-group">
+              <label for="bookingType">Type de séance *</label>
+              <select id="bookingType" required>
+                  <option value="">Choisir un type...</option>
+                  <option value="fashion">Séance Mode</option>
+                  <option value="event">Événement</option>
+                  <option value="other">Autre</option>
+              </select>
+          </div>
+          <div class="form-group">
+            <label for="paymentMethod">Mode de paiement *</label>
+            <select id="paymentMethod" required>
+                <option value="">Choisir un mode...</option>
+                <option value="onsite">Paiement sur place</option>
+            </select>
+        </div>
+        <div class="form-group" id="onlinePaymentSection" style="display: none;">
+          <label>Informations de paiement</label>
+          <div class="payment-info">
+              <p>Le paiement s'effectue selon un processus professionnel et sécurisé.</p>
+              
+              <!-- Montant original et négocié -->
+              <div class="amount-display" style="margin-top: 1.5rem; background: rgba(212, 175, 55, 0.05); padding: 1.5rem; border-radius: 10px; border: 2px solid rgba(212, 175, 55, 0.2);">
+                  <h4 style="color: var(--primary-color); margin-bottom: 1rem; text-align: center;">💎 Récapitulatif des prix</h4>
+                  
+                  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                      <!-- Prix du modèle (fixe) -->
+                      <div style="text-align: center; padding: 1rem; background: var(--white); border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                          <div style="font-size: 0.9rem; color: var(--accent-color); margin-bottom: 0.5rem;">Prix du modèle</div>
+                          <div id="originalPrice" style="font-size: 1.8rem; font-weight: bold; color: var(--secondary-color);">0 DA</div>
+                          <div style="font-size: 0.85rem; color: var(--accent-color); margin-top: 0.5rem;">Tarif standard</div>
+                      </div>
+                      
+                      <!-- Prix négocié -->
+                      <div style="text-align: center; padding: 1rem; background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(212, 175, 55, 0.2)); border-radius: 8px; box-shadow: 0 2px 8px rgba(212, 175, 55, 0.2); border: 2px solid var(--primary-color);">
+                          <div style="font-size: 0.9rem; color: var(--primary-color); margin-bottom: 0.5rem;">Prix négocié</div>
+                          <div id="negotiatedPriceDisplay" style="font-size: 2rem; font-weight: bold; color: var(--primary-color);">0 DA</div>
+                          <div style="font-size: 0.85rem; color: var(--accent-color); margin-top: 0.5rem;">Votre proposition</div>
+                      </div>
+                  </div>
+                  
+                  <!-- Indicateur de différence -->
+                  <div id="priceDifference" style="text-align: center; margin-top: 1rem; padding: 0.75rem; border-radius: 6px; display: none;">
+                      <span id="differenceAmount" style="font-weight: bold;"></span>
+                      <span id="differenceText" style="font-size: 0.9rem; margin-left: 0.5rem;"></span>
+                  </div>
+              </div>
+              
+              <div class="payment-instructions" style="margin-top: 1.5rem; padding: 1rem; background: rgba(212, 175, 55, 0.1); border-radius: 8px;">
+                  <h4 style="color: var(--primary-color); margin-bottom: 0.5rem;">📋 Modalités de règlement :</h4>
+                  <ul style="margin: 0; padding-left: 1.5rem;">
+                    <li><strong>Étape 1 :</strong> Accord sur le prix et les modalités avec la direction</li>
+                    <li><strong>Étape 2 :</strong> Signature du contrat de prestation</li>
+                    <li><strong>Étape 3 :</strong> Règlement de la prestation</li>
+                    <li><strong>Étape 4 :</strong> Réalisation de la séance avec le modèle</li>
+                </ul>
+              </div>
+          </div>
+      </div>
+          <button type="submit" class="btn-primary">Confirmer la Réservation</button>
+      </form>
+  </div>
+</section>
+    
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <p>&copy; 2024 Algerian Models Camp. Tous droits réservés.</p>
+      </div>
+    </footer>
+  </div>
+  
+  <!-- Model Details Modal -->
+  <div id="modelModal" class="modal">
+    <div class="modal-content">
+      <span class="modal-close">&times;</span>
+      <div id="modelDetails"></div>
+    </div>
+  </div>
+  
+  <script type="module" src="client-script.js"></script>
+</body>
+
+</html>
