@@ -155,7 +155,7 @@ const SUPABASE_CONFIG = {
         
         carouselData = portfolio;
         
-        const itemsPerSlide = window.innerWidth <= 768 ? 2 : 3;
+        const itemsPerSlide = window.innerWidth <= 768 ? 1 : 3;
         const slides = [];
         for (let i = 0; i < portfolio.length; i += itemsPerSlide) {
             slides.push(portfolio.slice(i, i + itemsPerSlide));
@@ -2147,7 +2147,7 @@ window.reloadCarousel = function() {
 function handleCarouselResize() {
     if (carouselData.length > 0) {
         // Recalculate slides based on current window width
-        const itemsPerSlide = window.innerWidth <= 768 ? 2 : 3;
+        const itemsPerSlide = window.innerWidth <= 768 ? 1 : 3;
         const slides = [];
         
         for (let i = 0; i < carouselData.length; i += itemsPerSlide) {
