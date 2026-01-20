@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algerian Models Camp - Bienvenue</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #d4af37;
+            --secondary-color: #f4d03f;
+            --dark-color: #1a1a1a;
+            --light-color: #f5f5dc;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--dark-color) 0%, #2d2d2d 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(212, 175, 55, 0.03) 35px, rgba(212, 175, 55, 0.03) 70px),
+                repeating-linear-gradient(-45deg, transparent, transparent 35px, rgba(212, 175, 55, 0.03) 35px, rgba(212, 175, 55, 0.03) 70px);
+            pointer-events: none;
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .logo {
+            margin-bottom: 3rem;
+            animation: fadeInDown 1s ease;
+        }
+
+        .logo h1 {
+            font-size: 3.5rem;
+            color: var(--primary-color);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            margin-bottom: 1rem;
+        }
+
+        .logo p {
+            font-size: 1.3rem;
+            color: var(--light-color);
+            font-style: italic;
+        }
+
+        .choices-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+            animation: fadeInUp 1s ease 0.3s both;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .choice-card {
+            background: rgba(26, 26, 26, 0.95);
+            backdrop-filter: blur(10px);
+            border: 3px solid var(--primary-color);
+            border-radius: 20px;
+            padding: 2.5rem 1.5rem;
+            text-decoration: none;
+            color: var(--white);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(212, 175, 55, 0.2);
+        }
+
+        .choice-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+            transition: transform 0.6s ease;
+        }
+
+        .choice-card:hover::before {
+            transform: scale(1.5) rotate(45deg);
+        }
+
+        .choice-card:hover {
+            transform: translateY(-15px) scale(1.05);
+            border-color: var(--secondary-color);
+            box-shadow: 0 20px 60px rgba(212, 175, 55, 0.4);
+        }
+
+        .choice-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            display: block;
+            position: relative;
+            z-index: 1;
+        }
+
+        .choice-title {
+            font-size: 1.6rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-weight: bold;
+            position: relative;
+            z-index: 1;
+        }
+
+        .choice-description {
+            font-size: 1rem;
+            color: var(--light-color);
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+        }
+
+        .visitor-card {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.05) 0%, rgba(26, 26, 26, 0.95) 100%);
+        }
+
+        .client-card {
+            background: linear-gradient(135deg, rgba(52, 152, 219, 0.05) 0%, rgba(26, 26, 26, 0.95) 100%);
+            border-color: #3498db;
+        }
+
+        .client-card:hover {
+            border-color: #5dade2;
+            box-shadow: 0 20px 60px rgba(52, 152, 219, 0.4);
+        }
+
+        .client-card .choice-title {
+            color: #3498db;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .logo h1 {
+                font-size: 2.5rem;
+            }
+
+            .logo p {
+                font-size: 1rem;
+            }
+
+            .choices-container {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                margin-top: 2rem;
+                max-width: 400px;
+            }
+
+            .choice-card {
+                padding: 2rem 1.25rem;
+            }
+
+            .choice-icon {
+                font-size: 3.5rem;
+            }
+
+            .choice-title {
+                font-size: 1.4rem;
+            }
+
+            .choice-description {
+                font-size: 0.95rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 15px;
+            }
+            
+            .logo {
+                margin-bottom: 2rem;
+            }
+            
+            .logo h1 {
+                font-size: 2rem;
+            }
+            
+            .logo p {
+                font-size: 0.9rem;
+            }
+
+            .choices-container {
+                gap: 1.25rem;
+                margin-top: 1.5rem;
+                max-width: 320px;
+            }
+
+            .choice-card {
+                padding: 1.75rem 1rem;
+                border-radius: 15px;
+            }
+
+            .choice-icon {
+                font-size: 3rem;
+                margin-bottom: 0.75rem;
+            }
+
+            .choice-title {
+                font-size: 1.25rem;
+                margin-bottom: 0.75rem;
+            }
+
+            .choice-description {
+                font-size: 0.9rem;
+                line-height: 1.5;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="logo">
+            <h1>⚜️ Algerian Models Camp</h1>
+            <p>Votre Partenaire dans le Monde du Mannequinat</p>
+        </div>
+
+        <div class="choices-container">
+            <a href="vitrine.html" class="choice-card visitor-card">
+                <span class="choice-icon">👤</span>
+                <h2 class="choice-title">Visiteur / Model</h2>
+                <p class="choice-description">
+                    Découvrez notre agence, explorez nos services, consultez notre portfolio et postulez pour devenir mannequin professionnel.
+                </p>
+            </a>
+
+            <a href="client.html" class="choice-card client-card">
+                <span class="choice-icon">💼</span>
+                <h2 class="choice-title">Clients</h2>
+                <p class="choice-description">
+                    Accédez à notre espace client, découvrez nos modèles professionnels, consultez nos tarifs et réservez vos séances.
+                </p>
+            </a>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algerian Models Camp - Agence de Mannequins Professionnelle</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style-index.css" media="screen and (max-width: 768px)">
+</head>
+
+<body>
+    <!-- Floating Sidebar Toggle Button -->
+    <button class="floating-sidebar-toggle" id="floatingSidebarToggle">
+        <span class="toggle-icon">☰</span>
+    </button>
+
+    <!-- Floating Sidebar -->
+    <aside class="floating-sidebar" id="floatingSidebar">
+        <div class="sidebar-header">
+            <h3>Menu Rapide</h3>
+            <button class="sidebar-close" id="sidebarClose">&times;</button>
+        </div>
+        <nav class="sidebar-menu">
+            <a href="#services" class="sidebar-link">⚙️ Services</a>
+            <a href="#about" class="sidebar-link">ℹ️ About Us</a>
+            <a href="#contact" class="sidebar-link">📞 Contact</a>
+            <a href="#ratings" class="sidebar-link">⭐ Avis</a>
+        </nav>
+        <div class="sidebar-footer">
+            <a href="client.html" class="btn-client-sidebar">
+                <span class="client-icon">💼</span>
+                <span class="client-text">Espace Client</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- Navbar (Main Navigation) -->
+    <!-- Navbar (Main Navigation) -->
+<header class="navbar" id="mainNavbar">
+    <div class="nav-container">
+        <!-- Logo -->
+        <div class="nav-logo">
+            <h2>Algerian Models Camp</h2>
+        </div>
+        
+        <!-- Desktop Navigation -->
+        <nav class="desktop-nav">
+            <a href="#home" class="nav-link">🏠 Accueil</a>
+            <a href="#portfolio" class="nav-link">🖼️ Portfolio</a>
+            <a href="#formations" class="nav-link">🎓 Formations</a>
+            <a href="#events" class="nav-link">📅 Événements</a>
+            <a href="#join" class="nav-link">✍️ Nous Rejoindre</a>
+            
+            <!-- BOUTON DESKTOP (visible uniquement sur grand écran) -->
+            <button id="themeToggle" class="theme-toggle desktop-btn">
+                <span class="theme-icon">🌙</span>
+                <span class="theme-text">Mode Nuit</span>
+            </button>
+        </nav>
+        
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-toggle" id="mobileToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        
+        <!-- BOUTON MOBILE HEADER (visible uniquement sur petit écran) -->
+        <button id="themeToggleMobileHeader" class="theme-toggle mobile-btn">
+            <span class="theme-icon">🌙</span>
+        </button>
+    </div>
+    
+    <!-- Mobile Navigation (Hidden by default) -->
+    <div class="mobile-nav" id="mobileNav">
+        <a href="#home" class="mobile-nav-link">🏠 Accueil</a>
+        <a href="#portfolio" class="mobile-nav-link">🖼️ Portfolio</a>
+        <a href="#formations" class="mobile-nav-link">🎓 Formations</a>
+        <a href="#events" class="mobile-nav-link">📅 Événements</a>
+        <a href="#join" class="mobile-nav-link">✍️ Nous Rejoindre</a>
+        <a href="#services" class="mobile-nav-link">⚙️ Services</a>
+        <a href="#about" class="mobile-nav-link">ℹ️ About Us</a>
+        <a href="#contact" class="mobile-nav-link">📞 Contact</a>
+        <a href="#ratings" class="mobile-nav-link">⭐ Avis</a>
+        
+        <!-- BOUTON MOBILE MENU (dans le menu déroulant) -->
+        <button id="themeToggleMobile" class="mobile-nav-link theme-toggle">
+            <span class="theme-icon">🌙</span>
+            <span class="theme-text">Mode Nuit</span>
+        </button>
+        
+        <a href="client.html" class="mobile-nav-link special-link">
+            <div class="client-card-nav">
+                <span class="nav-icon">💼</span>
+                <span class="nav-text">Espace Client</span>
+            </div>
+        </a>
+    </div>
+</header>
+
+    <!-- Main Content -->
+    <div class="main-wrapper">
+        <!-- Main Title Section -->
+        <section id="home" class="main-title-section">
+            <div class="container">
+                <h1 class="main-title">Votre Passerelle vers le Monde du Mannequinat Professionnel</h1>
+                
+                <!-- Portfolio Carousel -->
+                <div class="portfolio-carousel-container">
+                    <div class="portfolio-carousel" id="portfolioCarousel">
+                        <!-- Carousel items will be loaded here -->
+                    </div>
+                    <div class="carousel-controls">
+                        <button class="carousel-btn prev-btn" id="prevBtn">‹</button>
+                        <button class="carousel-btn next-btn" id="nextBtn">›</button>
+                    </div>
+                    <div class="carousel-dots" id="carouselDots">
+                        <!-- Dots will be generated here -->
+                    </div>
+                </div>
+                
+                <!-- Apply Button -->
+                <div class="apply-button-container">
+                    <a href="#join" class="btn-primary btn-apply">Postuler Maintenant</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Upcoming Event Banner -->
+        <div id="upcomingEventBanner" class="event-banner" style="display: none;"></div>
+
+        <!-- Services Section -->
+        <section id="services" class="services">
+            <div class="container">
+                <h2 class="section-title">Nos Services</h2>
+                <div class="services-grid" id="servicesGrid">
+                    <div class="service-card">
+                        <div class="service-icon">📸</div>
+                        <h3>Séances Photo</h3>
+                        <p>Créez votre portfolio professionnel avec nos photographes experts.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfolio Section -->
+        <section id="portfolio" class="portfolio">
+            <div class="container">
+                <h2 class="section-title">Notre Portfolio</h2>
+                <div class="portfolio-filters">
+                    <button class="filter-btn" data-filter="fashion">Mode</button>
+                </div>
+                <div class="portfolio-grid" id="portfolioGrid">
+                    <!-- Portfolio items will be loaded here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Events Section -->
+        <section id="events" class="news">
+            <div class="container">
+                <h2 class="section-title">Événements</h2>
+                <div class="events-tabs">
+                    <button class="tab-btn active" data-tab="upcoming">À Venir</button>
+                    <button class="tab-btn" data-tab="archived">Archives</button>
+                </div>
+                <div id="upcomingEvents" class="news-grid"></div>
+                <div id="archivedEvents" class="news-grid" style="display: none;"></div>
+            </div>
+        </section>
+
+        <!-- Formations Section -->
+        <section id="formations" class="formations">
+            <div class="container">
+                <h2 class="section-title">Nos Formations</h2>
+                <div class="formations-grid" id="formationsGrid"></div>
+            </div>
+        </section>
+
+        <!-- Join Section -->
+        <section id="join" class="join">
+            <div class="container">
+                <h2 class="section-title">Rejoignez-Nous</h2>
+                <p class="section-subtitle">Commencez votre carrière de mannequin professionnel</p>
+                <form id="joinForm" class="join-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="fullName">Nom Complet *</label>
+                            <input type="text" id="fullName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="age">Âge * (16-35)</label>
+                            <input type="number" id="age" min="16" max="35" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="height">Taille (cm) * (160-210)</label>
+                            <input type="number" id="height" min="160" max="210" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="city">Ville *</label>
+                            <input type="text" id="city" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Téléphone *</label>
+                            <input type="tel" id="phone" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="instagram">Instagram</label>
+                        <input type="text" id="instagram" placeholder="@votre_compte">
+                    </div>
+                    <div class="form-group">
+                        <label for="photos">Ajouter des Photos * (minimum 2 photos)</label>
+                        <input type="file" id="photos" accept="image/*" style="display: none;">
+                        <button type="button" id="addPhotoBtn" class="btn-add-photo">📷 Ajouter une photo</button>
+                        <small>Vous devez ajouter au moins 2 photos</small>
+                        <div id="photoPreview" class="photo-preview"></div>
+                    </div>
+                    <button type="submit" class="btn-primary">Envoyer la Candidature</button>
+                </form>
+            </div>
+        </section>
+
+        
+        <!-- Contact Section -->
+        <section id="contact" class="contact">
+            <div class="container">
+                <h2 class="section-title">Contactez-Nous</h2>
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <h3>📍 Adresse</h3>
+                            <p id="contact-address">Alger, Algérie</p>
+                        </div>
+                        <div class="contact-item">
+                            <h3>📞 Téléphone</h3>
+                            <p id="contact-phone"><a href="tel:+213555123456" id="contact-phone-link">+213 555 123 456</a></p>
+                        </div>
+                        <div class="contact-item">
+                            <h3>✉️ Email</h3>
+                            <p id="contact-email"><a href="mailto:contact@algerianmodelscamp.com" id="contact-email-link">contact@algerianmodelscamp.com</a></p>
+                        </div>
+                        <div class="contact-item">
+                            <h3>💬 WhatsApp</h3>
+                            <p><a href="https://wa.me/213555123456" id="contact-whatsapp" target="_blank">Envoyer un message WhatsApp</a></p>
+                        </div>
+                        <div class="contact-item">
+                            <h3>🌐 Réseaux Sociaux</h3>
+                            <div class="social-links">
+                                <a href="#" id="social-facebook" target="_blank">Facebook</a>
+                                <a href="#" id="social-instagram" target="_blank">Instagram</a>
+                                <a href="#" id="social-tiktok" target="_blank">TikTok</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-form">
+                        <form id="contactForm">
+                            <div class="form-group">
+                                <input type="text" id="contactName" placeholder="Nom" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" id="contactEmail" placeholder="Email" required>
+                            </div>
+                            <div class="form-group">
+                                <textarea id="contactMessage" rows="5" placeholder="Message" required></textarea>
+                            </div>
+                            <button type="submit" class="btn-primary">Envoyer</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about">
+            <div class="container">
+                <h2 class="section-title">À Propos de Nous</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <h3>Notre Histoire</h3>
+                        <p id="about-story">Algerian Models Camp est la première agence de mannequins professionnelle en Algérie, dédiée à la découverte et au développement de nouveaux talents dans l'industrie de la mode.</p>
+                        
+                        <h3>Notre Mission</h3>
+                        <p id="about-mission">Nous offrons une formation complète, un encadrement professionnel et des opportunités uniques pour lancer votre carrière de mannequin sur la scène nationale et internationale.</p>
+                        
+                        <h3>Nos Valeurs</h3>
+                        <p id="about-values">Excellence, professionnalisme, diversité et développement personnel sont au cœur de notre approche. Nous croyons en chaque talent unique et nous nous engageons à révéler le meilleur de chacun.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ratings Section -->
+        <section id="ratings" class="ratings">
+            <div class="container">
+                <h2 class="section-title">Notez Notre Service</h2>
+                <div class="rating-summary">
+                    <div class="average-rating">
+                        <div class="rating-number" id="averageRating">0.0</div>
+                        <div class="stars-display" id="averageStars"></div>
+                        <div class="rating-count" id="ratingCount">0 avis</div>
+                    </div>
+                </div>
+                <div class="rating-form">
+                    <h3>Donnez votre avis</h3>
+                    <div class="star-rating" id="starRating">
+                        <span class="star" data-rating="1">☆</span>
+                        <span class="star" data-rating="2">☆</span>
+                        <span class="star" data-rating="3">☆</span>
+                        <span class="star" data-rating="4">☆</span>
+                        <span class="star" data-rating="5">☆</span>
+                    </div>
+                    <form id="ratingForm">
+                        <input type="hidden" id="ratingValue" value="0">
+                        <div class="form-group">
+                            <input type="text" id="ratingName" placeholder="Votre nom (optionnel)">
+                        </div>
+                        <div class="form-group">
+                            <textarea id="ratingComment" placeholder="Votre commentaire (optionnel)" rows="3"></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary">Envoyer mon avis</button>
+                    </form>
+                </div>
+                <div class="ratings-list" id="ratingsList"></div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-links">
+                    <a href="#about">ℹ️ About Us</a>
+                    <a href="#contact">📞 Contact</a>
+                    <a href="admin.html">Admin</a>
+                </div>
+                <p>&copy; 2024 Algerian Models Camp. Tous droits réservés.</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Formation Modal -->
+    <div id="formationModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <div id="formationDetails"></div>
+        </div>
+    </div>
+
+    <!-- Lightbox Structure -->
+    <div id="lightbox" class="lightbox">
+        <div class="lightbox-content">
+            <span class="lightbox-close">&times;</span>
+            <div class="lightbox-image-container">
+                <img class="lightbox-image" src="" alt="">
+            </div>
+            <div class="lightbox-navigation">
+                <button class="lightbox-btn prev-btn" id="lightboxPrev">‹</button>
+                <button class="lightbox-btn next-btn" id="lightboxNext">›</button>
+            </div>
+            <div class="lightbox-caption">
+                <h3 class="lightbox-title"></h3>
+                <p class="lightbox-description"></p>
+                <div class="lightbox-counter"></div>
+            </div>
+            <div class="lightbox-thumbnails" id="lightboxThumbnails"></div>
+        </div>
+    </div>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    <script type="module" src="script.js"></script>
+    <script src="lightbox.js"></script>
+</body>
+
+</html>
